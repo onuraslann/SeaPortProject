@@ -5,9 +5,11 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-   public  class Color:IEntity
+   public class Image:IEntity
     {
         public int Id { get; set; }
-        public string ColorName { get; set; }
+        public int ShipId { get; set; }
+        public DateTime Date { get; set; }
+        public string ImagePath { get; set; }
     }
 }
