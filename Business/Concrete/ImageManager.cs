@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Business;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
@@ -27,7 +28,7 @@ namespace Business.Concrete
                 return result;
             }
             _ımagedal.Add(ımage);
-            return new SuccessResult();
+            return new SuccessResult(Messages.ImageAdded);
         }
 
         public IResult Delete(Image ımage)
@@ -45,7 +46,7 @@ namespace Business.Concrete
             var result = _ımagedal.GetAll(x => x.ShipId == shipId).Count;
             if (result > 6)
             {
-                return new ErrorResult("Bir geminin en fazla 5 adet resmi bulunur");
+                return new ErrorResult(Messages.CheckIfShipCount);
             }
             return new SuccessResult();
         }

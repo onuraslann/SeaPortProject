@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Validation;
 using Core.Utilities.Result;
@@ -28,7 +29,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Customer>> GetAll()
         {
-            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),"Listelenme başarılı");
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),Messages.CustomerList);
         }
     }
 }

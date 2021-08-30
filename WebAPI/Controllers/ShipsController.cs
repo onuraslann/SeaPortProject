@@ -19,6 +19,7 @@ namespace WebAPI.Controllers
         {
             _shipService = shipService;
         }
+
         [HttpGet("getall")]
 
         public IActionResult GetAll()

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Validation;
 using Core.Utilities.Result;
@@ -23,7 +24,7 @@ namespace Business.Concrete
         public IResult Add(Employee employee)
         {
             _employeDal.Add(employee);
-            return new SuccessResult();
+            return new SuccessResult(Messages.EmployeAdded);
 
                 }
 

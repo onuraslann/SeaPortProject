@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -31,7 +32,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Port>> GetAll()
         {
-            return new SuccessDataResult<List<Port>>(_portDal.GetAll());
+            return new SuccessDataResult<List<Port>>(_portDal.GetAll(),Messages.PortList);
         }
 
         public IDataResult<List<Port>> GetByName(string name)

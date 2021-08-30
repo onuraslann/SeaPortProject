@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,7 +22,7 @@ namespace Business.Concrete
         public IResult Add(Ship ship)
         {
             _shipDal.Add(ship);
-            return new SuccessResult();
+            return new SuccessResult(Messages.ShipAdded);
         }
 
         public IResult Delete(Ship ship)

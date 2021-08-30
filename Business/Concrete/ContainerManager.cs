@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -19,22 +20,25 @@ namespace Business.Concrete
 
         public IResult Add(Container container)
         {
-            throw new NotImplementedException();
+            _containerDal.Add(container);
+            return new SuccessResult(Messages.ContainerAdded);
         }
 
         public IResult Delete(Container container)
         {
-            throw new NotImplementedException();
+
+            _containerDal.Delete(container);
+            return new SuccessResult(Messages.ContainerDeleted);
         }
 
         public IDataResult<List<Container>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Container>>(_containerDal.GetAll());
         }
 
         public IDataResult<List<Container>> GetByPortId(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Container>>(_containerDal.GetAll(x=>x.PortId==id));
         }
     }
 }
