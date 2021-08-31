@@ -4,6 +4,7 @@ using Business.Abstract;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using System;
@@ -42,9 +43,11 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfShipDal>().As<IShipDal>().SingleInstance();
             builder.RegisterType<ShipTypeManager>().As<IShipTypeService>().SingleInstance();
             builder.RegisterType<EfShipTypeDal>().As<IShipTypeDal>().SingleInstance();
-            builder.RegisterType<EfUserDal>().As<IUserService>().SingleInstance();
+
+            builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
             builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

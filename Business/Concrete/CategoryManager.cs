@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects;
 using Business.Constants;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
@@ -18,6 +19,7 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
+        [SecuredOperation("admin")]
         public IResult Add(Category category)
         {
             _categoryDal.Add(category);
