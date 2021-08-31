@@ -42,6 +42,11 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfShipDal>().As<IShipDal>().SingleInstance();
             builder.RegisterType<ShipTypeManager>().As<IShipTypeService>().SingleInstance();
             builder.RegisterType<EfShipTypeDal>().As<IShipTypeDal>().SingleInstance();
+            builder.RegisterType<EfUserDal>().As<IUserService>().SingleInstance();
+            builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();
+            builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
+
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
