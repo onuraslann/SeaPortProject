@@ -2,6 +2,7 @@
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Caching;
+using Core.Aspects.Performance;
 using Core.Aspects.Validation;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
@@ -29,8 +30,10 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [PerformanceAspect(interval:1)]
         public IDataResult<List<Customer>> GetAll()
         {
+            
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),Messages.CustomerList);
         }
     }

@@ -13,6 +13,8 @@ namespace Business.Abstract
         IResult Add(Employee  employee);
 
         IDataResult<List<Employee>> GetByAge(int age);
+        IResult Update(Employee employee);
+        IResult CheckIfTransaction(Employee employee);
 
     }
 }

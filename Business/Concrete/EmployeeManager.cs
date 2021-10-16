@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Transaction;
 using Core.Aspects.Validation;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
@@ -27,6 +28,13 @@ namespace Business.Concrete
             return new SuccessResult(Messages.EmployeAdded);
 
                 }
+    [TransactionScopeAspect]
+        public IResult CheckIfTransaction(Employee employee)
+        {
+            _employeDal.Update(employee);
+            _employeDal.Add(employee);
+            return new SuccessResult();
+        }
 
         public IDataResult<List<Employee>> GetAll()
         {
@@ -36,6 +44,12 @@ namespace Business.Concrete
         public IDataResult<List<Employee>> GetByAge(int age)
         {
             return new SuccessDataResult<List<Employee>>(_employeDal.GetAll(x=> x.Age>age));
+        }
+
+        public IResult Update(Employee employee)
+        {
+            _employeDal.Update(employee);
+            return new SuccessResult(Messages.EmployeeUpdate);
         }
     }
 }

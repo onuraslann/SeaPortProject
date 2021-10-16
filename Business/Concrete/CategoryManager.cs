@@ -2,6 +2,8 @@
 using Business.BusinessAspects;
 using Business.Constants;
 using Core.Aspects.Caching;
+using Core.Aspects.Performance;
+using Core.Aspects.Transaction;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,12 +23,16 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("admin")]
+        [PerformanceAspect(interval: 1)]
+
         [CacheRemoveAspect("ICategoryService.Get")]
         public IResult Add(Category category)
         {
             _categoryDal.Add(category);
             return new SuccessResult(Messages.CategoryAdded);
         }
+      
+       
 
         public IResult Delete(Category category)
         {
@@ -37,6 +43,12 @@ namespace Business.Concrete
         public IDataResult<List<Category>> GetAll()
         {
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(),Messages.CategoryList);
+        }
+
+        public IResult Update(Category category)
+        {
+            _categoryDal.Update(category);
+            return new SuccessResult(Messages.CategoryUpdate);
         }
     }
 }

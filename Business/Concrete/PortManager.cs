@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Aspects.Performance;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -30,6 +31,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [PerformanceAspect(interval: 1)]
         public IDataResult<List<Port>> GetAll()
         {
             return new SuccessDataResult<List<Port>>(_portDal.GetAll(),Messages.PortList);
