@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects;
 using Business.Constants;
+using Core.Aspects.Caching;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,6 +21,7 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("admin")]
+        [CacheRemoveAspect("ICategoryService.Get")]
         public IResult Add(Category category)
         {
             _categoryDal.Add(category);

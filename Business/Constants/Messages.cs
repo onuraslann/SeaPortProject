@@ -12,10 +12,7 @@ namespace Business.Constants
     {
 
         public static string CategoryAdded = "Category  eklendi";
-
-
         public static string CategoryList = "Category Listelendi";
-
         public static string ColorAdded = "Renk Eklendi";
         public static string ContainerAdded = "Container eklendi";
         public static string ContainerDeleted = "Container silindi";

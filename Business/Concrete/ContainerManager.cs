@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects;
 using Business.Constants;
+using Core.Aspects.Caching;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -18,6 +20,7 @@ namespace Business.Concrete
             _containerDal = containerDal;
         }
 
+        [SecuredOperation("admin,editör")]
         public IResult Add(Container container)
         {
             _containerDal.Add(container);
@@ -30,7 +33,7 @@ namespace Business.Concrete
             _containerDal.Delete(container);
             return new SuccessResult(Messages.ContainerDeleted);
         }
-
+        [CacheAspect]
         public IDataResult<List<Container>> GetAll()
         {
             return new SuccessDataResult<List<Container>>(_containerDal.GetAll());
